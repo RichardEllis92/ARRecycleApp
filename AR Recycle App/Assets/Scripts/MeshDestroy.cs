@@ -7,17 +7,22 @@ using UnityEngine.XR.ARFoundation;
 public class MeshDestroy : MonoBehaviour
 {
     public static MeshDestroy instance;
+    /*
     private bool edgeSet = false;
     private Vector3 edgeVertex = Vector3.zero;
     private Vector2 edgeUV = Vector2.zero;
     private Plane edgePlane = new Plane();
-
-    public int CutCascades = 1;
-    public float ExplodeForce = 0;
+    //public int CutCascades = 1;
+    //public float ExplodeForce = 0;
+    */
     private int score = 10;
     public float xStartForce;
     public float yStartForce;
     public bool spawned;
+    private float minY = -20;
+    private float maxY = 20;
+    private float minX = -20;
+    private float maxX = 20;
 
     Rigidbody rb;
 
@@ -27,40 +32,31 @@ public class MeshDestroy : MonoBehaviour
     }
     void Start()
     {
-        xStartForce = Random.Range(-1, 1);
-        yStartForce = Random.Range(-1, 1);
+        xStartForce = Random.Range(-2, 2);
+        yStartForce = Random.Range(-2, 2);
         rb = GetComponent<Rigidbody>();
-        Destroy(gameObject, 5); //Remove this when config is in place to destroy object when out of range
+        //Destroy(gameObject, 5); //Remove this when config is in place to destroy object when out of range
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (xStartForce < 0.5 && xStartForce > -0.5)
+            xStartForce = 1;
+        if (yStartForce < 0.5 && yStartForce > -0.5)
+            yStartForce = 1;
+
+
         transform.position += transform.up * yStartForce * Time.deltaTime;
         transform.position += transform.right * xStartForce * Time.deltaTime;
 
-        if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Moved)
-         {
-             var arCamera = FindObjectOfType<ARSessionOrigin>().camera;
-             Ray ray = arCamera.ScreenPointToRay(Input.touches[0].position);
-             RaycastHit hit;
+        PlayerDestroyObject();
 
-             if (Physics.Raycast(ray, out hit))
-             {
-                 if (hit.collider != null && hit.collider.tag == "Watermelon")
-                 {
-                    spawned = true;
-                    StartCoroutine(WaitForSeconds());
-                    //DestroyMesh(hit.transform.gameObject);
-                    Destroy(hit.transform.gameObject);
+        if (transform.position.y > maxY || transform.position.y < minY || transform.position.x > maxX || transform.position.x < minX)
+        {
+            DestroyObject();
+        }
 
-                    SpawnManager.instance.SpawnSliced(hit.collider.tag, hit.collider.gameObject.transform.position);
-                    Score.instance.AddScore(score);
-                    spawned = false;
-                    //Destroy(hit.transform.gameObject);
-                }
-             }
-         }
 
     }
 
@@ -71,8 +67,36 @@ public class MeshDestroy : MonoBehaviour
 
     }
 
+    public void DestroyObject()
+    {
+        Destroy(gameObject);
+    }
 
-        private void DestroyMesh(GameObject Recycle)
+    public void PlayerDestroyObject()
+    {
+        if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Moved)
+        {
+            var arCamera = FindObjectOfType<ARSessionOrigin>().camera;
+            Ray ray = arCamera.ScreenPointToRay(Input.touches[0].position);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.collider != null && (hit.collider.tag == "CokeCan")) //Add an || in here for each object tag
+                {
+                    //spawned = true;
+                    //StartCoroutine(WaitForSeconds());
+                    Destroy(hit.transform.gameObject);
+                    SpawnManager.instance.SpawnSliced(hit.collider.tag, hit.collider.gameObject.transform.position);
+                    AudioManager.instance.PlaySlash();
+                    Score.instance.AddScore(score);
+                    //spawned = false;
+                }
+            }
+        }
+    }
+    /*
+    private void DestroyMesh(GameObject Recycle)
     {
         var originalMesh = GetComponent<MeshFilter>().mesh;
         originalMesh.RecalculateBounds();
@@ -343,4 +367,5 @@ public class MeshDestroy : MonoBehaviour
         }
 
     }
+    */
 }

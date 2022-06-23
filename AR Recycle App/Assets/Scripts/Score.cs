@@ -17,11 +17,8 @@ public class Score : MonoBehaviour
 
     public void AddScore(int gameScore)
     {
-        if (MeshDestroy.instance.spawned)
-        {
-            totalScore += gameScore;
-            scoreText.text = "Score: " + totalScore.ToString();
-        }
+        totalScore += gameScore;
+        scoreText.text = "Score: " + totalScore.ToString();
     }
     
 }

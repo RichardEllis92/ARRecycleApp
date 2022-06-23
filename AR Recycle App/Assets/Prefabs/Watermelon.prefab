@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 3203266461206042180}
   m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
   m_LocalPosition: {x: -0.237, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalScale: {x: 20, y: 20, z: 20}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -116,6 +116,10 @@ MonoBehaviour:
   xStartForce: 0
   yStartForce: 0
   spawned: 0
+  minY: -20
+  maxY: 20
+  minX: -20
+  maxX: 20
 --- !u!54 &1616668786
 Rigidbody:
   m_ObjectHideFlags: 0

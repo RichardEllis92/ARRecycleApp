@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR;
-using UnityEngine.XR.ARFoundation;
 
 public class Blade : MonoBehaviour
 {
@@ -12,29 +10,29 @@ public class Blade : MonoBehaviour
 
 	bool isCutting = false;
 
-	Vector2 previousPosition;
+	Vector3 previousPosition;
 
 	GameObject currentBladeTrail;
 
-	Rigidbody2D rb;
+	Rigidbody rb;
 	Camera cam;
-	CircleCollider2D circleCollider;
+	SphereCollider circleCollider;
 
 	void Start()
 	{
-		cam = FindObjectOfType<ARSessionOrigin>().camera;
-		rb = GetComponent<Rigidbody2D>();
-		circleCollider = GetComponent<CircleCollider2D>();
+		cam = Camera.main;
+		rb = GetComponent<Rigidbody>();
+		circleCollider = GetComponent<SphereCollider>();
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
-		if (Input.touchCount > 0)
+		if (Input.GetMouseButtonDown(0))
 		{
 			StartCutting();
 		}
-		else if (Input.touchCount <= 0)
+		else if (Input.GetMouseButtonUp(0))
 		{
 			StopCutting();
 		}
@@ -48,7 +46,8 @@ public class Blade : MonoBehaviour
 
 	void UpdateCut()
 	{
-		Vector2 newPosition = cam.ScreenToWorldPoint(Input.GetTouch(0).position);
+		Vector3 newPosition = cam.ScreenToWorldPoint(Input.mousePosition);
+		newPosition = new Vector3(newPosition.x, newPosition.y, 3f);
 		rb.position = newPosition;
 
 		float velocity = (newPosition - previousPosition).magnitude * Time.deltaTime;
@@ -68,7 +67,7 @@ public class Blade : MonoBehaviour
 	{
 		isCutting = true;
 		currentBladeTrail = Instantiate(bladeTrailPrefab, transform);
-		previousPosition = cam.ScreenToWorldPoint(Input.GetTouch(0).position);
+		previousPosition = cam.ScreenToWorldPoint(Input.mousePosition);
 		circleCollider.enabled = false;
 	}
 
