@@ -42,7 +42,11 @@ public class SpawnManager : MonoBehaviour
     {
         if (tag == "CokeCan")
         {
-           Instantiate(slicedrecycleObjectsPrefab[1], position, Quaternion.identity);
+            Instantiate(slicedrecycleObjectsPrefab[0], position, Quaternion.identity);
+        }
+        else if (tag == "Box")
+        {
+            Instantiate(slicedrecycleObjectsPrefab[1], position, Quaternion.identity);
         }
 
         //Instantiate(slicedrecycleObjectsPrefab[0], position, Quaternion.identity);

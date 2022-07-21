@@ -82,7 +82,7 @@ public class MeshDestroy : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.collider != null && (hit.collider.tag == "CokeCan")) //Add an || in here for each object tag
+                if (hit.collider != null && ((hit.collider.tag == "CokeCan") || (hit.collider.tag == "Box"))) //Add an || in here for each object tag
                 {
                     //spawned = true;
                     //StartCoroutine(WaitForSeconds());

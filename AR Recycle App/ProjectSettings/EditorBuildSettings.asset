@@ -6,11 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
     path: Assets/Scenes/RecycleNinja.unity
     guid: 81e2212dae6eceb49b9ede11e39f1c06
+  - enabled: 0
+    path: Assets/Scenes/Object Recognition.unity
+    guid: 888d868123cdb49408f7bfe4bbf11f77
+  - enabled: 0
+    path: Assets/Scenes/MainMenu.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 2878272011dce174e9bf65745620df11, type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: 8b40e217b32090c41a3ff9c1b1835b19, type: 2}
