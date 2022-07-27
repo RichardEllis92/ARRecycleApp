@@ -36,6 +36,7 @@ public class Timer : MonoBehaviour
         if(timeToDisplay < 0)
         {
             timeToDisplay = 0;
+            AudioManager.instance.StopMusic();
         }
         else if(timeToDisplay > 0)
         {

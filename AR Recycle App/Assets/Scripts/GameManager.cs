@@ -21,11 +21,14 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
+    public void StartObjectRecognition()
+    {
+        SceneManager.LoadScene("Object Recognition");
+    }
     public void OpenInstructions()
     {
         instructionsPanel.SetActive(true);
     }
-
     public void CloseInstructions()
     {
         instructionsPanel.SetActive(false);

@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: f210f4c024bd7024e85634efcbf9b5a4
+guid: 75cb50576d444ff43a82397aef7c378a
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: JarMat
-    second: {fileID: 2100000, guid: 38660106b724d2e468308bf7bb1ff212, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0

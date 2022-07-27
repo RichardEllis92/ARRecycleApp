@@ -32,8 +32,8 @@ public class MeshDestroy : MonoBehaviour
     }
     void Start()
     {
-        xStartForce = Random.Range(-2, 2);
-        yStartForce = Random.Range(-2, 2);
+        xStartForce = Random.Range(-1, 1);
+        yStartForce = Random.Range(1, 2);
         rb = GetComponent<Rigidbody>();
         //Destroy(gameObject, 5); //Remove this when config is in place to destroy object when out of range
     }
@@ -82,7 +82,7 @@ public class MeshDestroy : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.collider != null && ((hit.collider.tag == "CokeCan") || (hit.collider.tag == "Box"))) //Add an || in here for each object tag
+                if (hit.collider != null && ((hit.collider.tag == "CokeCan") || (hit.collider.tag == "Box") || (hit.collider.tag == "Jar"))) //Add an || in here for each object tag
                 {
                     //spawned = true;
                     //StartCoroutine(WaitForSeconds());

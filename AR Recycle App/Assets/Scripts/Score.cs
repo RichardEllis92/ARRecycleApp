@@ -12,13 +12,13 @@ public class Score : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        scoreText.text = "Score: " + totalScore.ToString();
+        scoreText.text = "Score:" + totalScore.ToString();
     }
 
     public void AddScore(int gameScore)
     {
         totalScore += gameScore;
-        scoreText.text = "Score: " + totalScore.ToString();
+        scoreText.text = "Score:" + totalScore.ToString();
     }
     
 }

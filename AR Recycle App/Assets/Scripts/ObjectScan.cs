@@ -5,6 +5,7 @@ using UnityEngine;
 public class ObjectScan : MonoBehaviour
 {
     public GameObject unlockedObject;
+    public GameObject camera;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,5 +23,6 @@ public class ObjectScan : MonoBehaviour
 
         yield return new WaitForSeconds(10f);
         unlockedObject.SetActive(true);
+        camera.SetActive(true);
     }
 }

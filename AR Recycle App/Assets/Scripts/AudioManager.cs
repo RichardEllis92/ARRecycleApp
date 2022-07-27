@@ -12,6 +12,7 @@ public class AudioManager : MonoBehaviour
     {
         instance = this;
     }
+
     public void PlaySlash()
     {
         slash.Stop();
@@ -27,4 +28,5 @@ public class AudioManager : MonoBehaviour
     {
         music.Stop();
     }
+
 }

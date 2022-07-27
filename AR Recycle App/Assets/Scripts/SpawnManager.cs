@@ -23,15 +23,24 @@ public class SpawnManager : MonoBehaviour
     {
         spawnTimer -= Time.deltaTime;
 
-        randRecycleObject = Random.Range(0, 2);
+        randRecycleObject = Random.Range(0, 3);
 
         if (spawnTimer <= 0f)
         {
             randz = Random.Range(0, 1) == 0 ? 1f : -1f;
             
-            Vector3 randomSpawnPosition = new Vector3((Random.Range(-5, 5)), (Random.Range(-5, 5)), randz);
+            Vector3 randomSpawnPosition = new Vector3((Random.Range(-2, 2)), -1, 2);
             Instantiate(recycleObjectsPrefab[randRecycleObject], randomSpawnPosition, Quaternion.identity);
-            spawnTimer = 1.5f;
+            
+            if(Timer.instance.timeValue < 10)
+            {
+                spawnTimer = 0.5f;
+            }
+            else
+            {
+                spawnTimer = 1.5f;
+            }
+            
         }
         
         //add here if object goes out of range, destroy
@@ -47,6 +56,10 @@ public class SpawnManager : MonoBehaviour
         else if (tag == "Box")
         {
             Instantiate(slicedrecycleObjectsPrefab[1], position, Quaternion.identity);
+        }
+        else if (tag == "Jar")
+        {
+            Instantiate(slicedrecycleObjectsPrefab[2], position, Quaternion.identity);
         }
 
         //Instantiate(slicedrecycleObjectsPrefab[0], position, Quaternion.identity);
